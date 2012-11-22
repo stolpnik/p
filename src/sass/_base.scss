@@ -1,0 +1,46 @@
+@import "compass/css3/transform";
+@import "compass/css3/shared";
+
+$cellHeight : 60%;
+$cellWidth  : 60%;
+
+html,body{
+	width: 100%;
+}
+
+#p h1{
+	font-size: 1.75em;
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	background-color: #cccccc;
+}
+
+#p h2{
+	font-size: 1.5em;
+	margin-top: 20px;
+	height: 50px;
+	text-align: center;
+}
+
+div.page p{
+	font-size: 1em;
+	padding: 10px 20px;
+	text-align: left;
+}
+
+#p{
+	width: $cellWidth;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.page{
+	width: $cellWidth;
+	height: $cellHeight;
+	text-align: center;
+	border:1px solid#cecece;
+	position: fixed;
+	background-color: #efefef;
+	//@include experimental( transform-style, preserve-3d );
+}

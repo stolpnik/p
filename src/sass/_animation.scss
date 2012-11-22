@@ -1,0 +1,56 @@
+@import "compass/css3";
+@import "compass/css3/transform";
+@import "compass/css3/shared";
+
+@mixin keyframes($animation_name) {
+	@-moz-keyframes $animation_name {
+        @content
+	}
+	@-webkit-keyframes $animation_name {
+        @content
+    }
+	@-ms-keyframes $animation_name {
+        @content
+	}
+	@keyframes $animation_name {
+        @content
+	}
+}
+
+@include keyframes("showPage"){
+	0% {
+		@include experimental( transform, perspective(2000px) rotateX(135deg) /*translate3d(-1000px, -1000px, 1000px)*/ );
+		//opacity : 0;
+	}
+	100%{
+		@include experimental( transform, perspective(2000px) rotateX(0) translate3d( 0, 0, 0));
+		//opacity : 1;
+	}
+}
+
+@include keyframes("hidePage"){
+	0% {
+		@include experimental( transform, perspective(2000px) rotateX(0) translate3d( 0, 0, 0));
+	}
+	/*75%{
+		@include experimental( transform, perspective(2000px) rotateX(135deg) );
+	}*/
+	100%{
+		@include experimental( transform, perspective(2000px) rotateX(135deg) /*translate3d(-1000px, -1000px, 1000px)*/ );
+		//opacity : 0;
+	}
+}
+
+.flipPage {
+	@include experimental( transform-origin, 50% 0 0 );
+	@include experimental( animation-name, "hidePage");
+	@include experimental( animation-duration, 0.5s);
+	@include experimental( animation-fill-mode, forwards );
+}
+
+.unflipPage {
+	@include experimental( transform-origin, 50% 0 0 );
+	@include experimental( animation-name, "showPage");
+	@include experimental( animation-duration, 0.5s);
+	@include experimental( animation-fill-mode, forwards );
+}
