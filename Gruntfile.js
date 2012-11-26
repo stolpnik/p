@@ -18,20 +18,20 @@ module.exports = function( grunt ) {
 		// Coffee to JS compilation
 		min: {
 			default: {
-				src: 'src/js/p_default.js'
+				src: 'src/js/p.js'
+				,
+				dest: 'app/js/p.min.js'
+			},
+			bare: {
+				src: 'src/js/p.js'
 				,
 				dest: 'app/js/p.js'
 			},
-			bare: {
-				src: 'src/js/p_bare.js'
-				,
-				dest: 'app/js/p_bare.js'
-			},
-			all: {
+			/*all: {
 				src: 'src/js/p_all.js'
 				,
 				dest: 'app/js/p_all.js'
-			},
+			},*/
 			index: {
 				src: 'src/js/index.js',
 				dest: 'app/js/index.js'
@@ -49,29 +49,16 @@ module.exports = function( grunt ) {
 		},
 
 		concat: {
-			bare: {
-				src: [
-					,'src/js/header.txt'
-					,'src/js/p.js'
-					,'src/js/s.js'
-					//,'src/js/r.js'
-					,'src/js/footer.txt'
-				],
-				dest: 'src/js/p_bare.js'
-			},
 			default: {
 				src: [
-					,'src/js/showdown.js'
-					,'src/js/hogan-2.0.0.js'
-					,'src/js/templates.hogan.js'
 					,'src/js/header.txt'
 					,'src/js/p.js'
 					,'src/js/s.js'
 					//,'src/js/r.js'
 					,'src/js/footer.txt'
 				],
-				dest: 'src/js/p_default.js'
-			},
+				dest: 'src/js/p.js'
+			}/*,
 			all : {
 				src: [
 					,'components/jquery/jquery.js'
@@ -85,7 +72,7 @@ module.exports = function( grunt ) {
 					,'src/js/footer.txt'
 				],
 				dest : 'src/js/p_all.js'
-			}/*,
+			},
 			prod : {
 				src: '<config:concat.default.src>',
 				dest: 'app/js/p.js'
@@ -138,7 +125,7 @@ module.exports = function( grunt ) {
 		watch: {
 			default : {
 				files: 'src/coffee/*.coffee',
-				tasks: 'coffee:default concat:default notifyGrowl:coffee'
+				tasks: 'coffee:default concat min notifyGrowl:coffee'
 			},
 			compass : {
 				files: 'src/sass/*',
@@ -297,9 +284,6 @@ module.exports = function( grunt ) {
 		grunt.task.run( "coffee concat min" );
 		grunt.task.run( "compass:prod" );
 		//file copy
-		grunt.file.copy( "components/jquery/jquery.min.js", "app/js/jquery.js" );
-		grunt.file.copy( "src/js/showdown.js", "app/js/showdown.js" );
-		grunt.file.copy( "src/js/hogan-2.0.0.js", "app/js/hogan.js" );
 		grunt.file.copy( "src/js/templates.hogan.js", "app/js/templates.hogan.js" );
 		grunt.file.copy( "src/js/p_bare.js", "app/js/p_uncompressed.js" );
 		grunt.task.run( "notifyGrowl:production" );
@@ -378,6 +362,7 @@ module.exports = function( grunt ) {
 			}
 		});
 		grunt.file.write(data.output, result);
+		grunt.file.copy( data.output, "app/js/templates.hogan.js" );
 	});
 
 };
