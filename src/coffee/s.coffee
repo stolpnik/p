@@ -26,6 +26,12 @@ class S
 		)
 		this.resize()
 
+		$("h1", this.target).click(
+			->
+				if document.body.webkitRequestFullScreen?
+					document.body.webkitRequestFullScreen()
+		)
+
 	resize : (e)->
 		t = $( "div.page", this.container )
 		pageHeight = $(window).height()

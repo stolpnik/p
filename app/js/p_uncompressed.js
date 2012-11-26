@@ -210,12 +210,7 @@ S = (function() {
     $("div#page-1", this.container).show();
     $("#p").on("webkitAnimationStart", "div.page", function() {});
     $("#p").on("webkitAnimationEnd", "div.page", function() {});
-    this.resize();
-    return $("h1", this.target).click(function() {
-      if (document.body.webkitRequestFullScreen != null) {
-        return document.body.webkitRequestFullScreen();
-      }
-    });
+    return this.resize();
   };
 
   S.prototype.resize = function(e) {

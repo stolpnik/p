@@ -7,11 +7,7 @@ P = p.P;
 pr = null;
 
 _init = function(d) {
-  return $("h1").click(function() {
-    if (document.body.webkitRequestFullScreen != null) {
-      return document.body.webkitRequestFullScreen();
-    }
-  });
+  return null;
 };
 
 $(function() {

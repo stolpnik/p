@@ -3,11 +3,7 @@ P = p.P
 pr = null
 
 _init = (d)->
-	$("h1").click(
-		->
-			if document.body.webkitRequestFullScreen?
-				document.body.webkitRequestFullScreen()
-	)
+	null
 
 $ ->
 	pr = new P( "body", p.S )
