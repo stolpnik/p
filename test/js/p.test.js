@@ -67,22 +67,51 @@ describe("p", function() {
       });
     });
   });
-  describe("next", function() {
-    describe("render with R", function() {
-      return it("render a next page", function(done) {
-        var dfd;
-        dfd = presen.load();
-        return $.when(dfd).done(function(d) {
-          var html;
-          html = presen.parse(d);
-          presen.addPages(html);
-          presen.setup();
-          presen.next().should.be.match(/bbb/g);
-          $("#page-1").hasClass("flipPage").should.be["true"];
-          return done();
-        });
+  describe("render S", function(done) {
+    return it("show 1st page(default)", function(done) {
+      var dfd;
+      presen = new P("body", S);
+      dfd = presen.load();
+      return $.when(dfd).done(function(d) {
+        var html;
+        html = presen.parse(d);
+        presen.addPages(html);
+        presen.setup();
+        $("#page-1").css("display").should.be.equal("block");
+        return done();
       });
     });
+  });
+  describe("render a page no", function() {
+    it("shows page 1/4", function(done) {
+      var dfd;
+      dfd = presen.load();
+      return $.when(dfd).done(function(d) {
+        var html;
+        html = presen.parse(d);
+        presen.addPages(html);
+        presen.setup();
+        $("#current-page").text().should.be.equal('1');
+        $("#total-pages").text().should.be.equal('4');
+        return done();
+      });
+    });
+    return it("shows page 3/4", function(done) {
+      var dfd;
+      dfd = presen.load();
+      return $.when(dfd).done(function(d) {
+        var html;
+        html = presen.parse(d);
+        presen.addPages(html);
+        presen.setup();
+        presen.show(3);
+        $("#current-page").text().should.be.equal('3');
+        $("#total-pages").text().should.be.equal('4');
+        return done();
+      });
+    });
+  });
+  describe("next", function() {
     return describe("render with S", function() {
       beforeEach(function() {
         $(document).off("keyup");
@@ -107,24 +136,6 @@ describe("p", function() {
     });
   });
   return describe("prev", function() {
-    describe("render with R", function() {
-      return it("render a prev page", function(done) {
-        var dfd;
-        dfd = presen.load();
-        return $.when(dfd).done(function(d) {
-          var html;
-          html = presen.parse(d);
-          presen.addPages(html);
-          presen.setup();
-          presen.prev().should.be.match(/ddd/g);
-          $("#page-1").hasClass("flipPage").should.be["true"];
-          return setTimeout(function() {
-            $("#page-1").css("zIndex").should.be.equal('-4');
-            return done();
-          }, 1250);
-        });
-      });
-    });
     return describe("render with S", function() {
       beforeEach(function() {
         $(document).off("keyup");

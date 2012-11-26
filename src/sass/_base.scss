@@ -1,19 +1,35 @@
 @import "compass/css3/transform";
 @import "compass/css3/shared";
 
-$cellHeight : 60%;
-$cellWidth  : 60%;
+$cellHeight : 80%;
+$cellWidth  : 50%;
+
+$hira3 : "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro";
+$hira6 : "ヒラギノ角ゴ Pro W6","HiraKakuPro-W6";
 
 html,body{
 	width: 100%;
+	font-family: $hira3;
+	-webkit-font-smoothing: antialiased;
+	background-color: #efefef;
 }
 
 #p h1{
-	font-size: 1.75em;
+	font-size: 2em;
 	position: absolute;
 	right: 10px;
-	bottom: 10px;
+	top: 10px;
 	background-color: #cccccc;
+	font-family: $hira6;
+	z-index: 10000;
+}
+
+#p h2{
+	font-size: 2em;
+	margin-top: 20px;
+	height: 50px;
+	text-align: center;
+	font-family: $hira6;
 }
 
 #p h2{
@@ -21,10 +37,20 @@ html,body{
 	margin-top: 20px;
 	height: 50px;
 	text-align: center;
+	font-family: $hira6;
 }
 
-div.page p{
-	font-size: 1em;
+#p li{
+	margin-top: 5px;
+}
+
+#p ul{
+	margin: 0 0 20px 25px;
+}
+
+div.page{
+	font-size: 1.25em;
+	line-height: 1.5em;
 	padding: 10px 20px;
 	text-align: left;
 }
@@ -38,9 +64,69 @@ div.page p{
 .page{
 	width: $cellWidth;
 	height: $cellHeight;
-	text-align: center;
 	border:1px solid#cecece;
 	position: fixed;
 	background-color: #efefef;
+	margin-top : 10px;
 	//@include experimental( transform-style, preserve-3d );
 }
+
+.page p{
+	margin-top : 20px;
+	margin: 0 auto;
+}
+
+.page p img{
+	margin: 0 auto;
+}
+
+#page-no{
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	background-color: #efefef;
+}
+
+#current-page{
+	display : inline-block;
+}
+
+#total-pages{
+	display : inline-block;
+}
+
+code, tt {
+	margin: 0 2px;
+	padding: 0 5px;
+	white-space: nowrap;
+	border: 1px solid #eaeaea;
+	background-color: #f8f8f8;
+	border-radius: 3px; }
+
+pre code {
+	margin: 0;
+	padding: 0;
+	white-space: pre;
+	border: none;
+	background: transparent; }
+
+.highlight pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	font-size: 13px;
+	line-height: 19px;
+	overflow: auto;
+	padding: 6px 10px;
+	border-radius: 3px; }
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	font-size: 13px;
+	line-height: 19px;
+	overflow: auto;
+	padding: 6px 10px;
+	border-radius: 3px; }
+pre code, pre tt {
+	background-color: transparent;
+	border: none; }

@@ -50,20 +50,46 @@ describe "p", ->
 					$("h1", $("div#p"))
 					done()
 			)
+	describe "render S", (done)->
+		it "show 1st page(default)", (done)->
+			presen = new P( "body", S )
+			dfd = presen.load()
+			$.when(dfd).done(
+				(d)->
+					html = presen.parse(d)
+					presen.addPages html
+					presen.setup()
+					$("#page-1").css("display").should.be.equal("block")
+					done()
+			)
+
+	describe "render a page no", ->
+		it "shows page 1/4", (done)->
+			dfd = presen.load()
+			$.when(dfd).done(
+				(d)->
+					html = presen.parse(d)
+					presen.addPages html
+					presen.setup()
+					$("#current-page").text().should.be.equal('1')
+					$("#total-pages").text().should.be.equal('4')
+					done()
+			)
+		it "shows page 3/4", (done)->
+			dfd = presen.load()
+			$.when(dfd).done(
+				(d)->
+					html = presen.parse(d)
+					presen.addPages html
+					presen.setup()
+					presen.show(3)
+					$("#current-page").text().should.be.equal('3')
+					$("#total-pages").text().should.be.equal('4')
+					done()
+			)
+
 
 	describe "next", ->
-		describe "render with R", ->
-			it "render a next page", (done)->
-				dfd = presen.load()
-				$.when(dfd).done(
-					(d)->
-						html = presen.parse(d)
-						presen.addPages html
-						presen.setup()
-						presen.next().should.be.match(/bbb/g)
-						$("#page-1").hasClass("flipPage").should.be.true
-						done()
-				)
 		describe "render with S", ->
 			beforeEach ->
 				$(document).off("keyup")
@@ -85,23 +111,6 @@ describe "p", ->
 
 
 	describe "prev", ->
-		describe "render with R", ->
-			it "render a prev page", (done)->
-				dfd = presen.load()
-				$.when(dfd).done(
-					(d)->
-						html = presen.parse(d)
-						presen.addPages html
-						presen.setup()
-						presen.prev().should.be.match(/ddd/g)
-						$("#page-1").hasClass("flipPage").should.be.true
-						setTimeout(
-							->
-								$("#page-1").css("zIndex").should.be.equal('-4')
-								done()
-							,1250
-						)
-				)
 		describe "render with S", ->
 			beforeEach ->
 				$(document).off("keyup")
