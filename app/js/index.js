@@ -1,1 +1,0 @@
-var P,p,pr,_init;p=this.p,P=p.P,pr=null,_init=function(a){return null},$(function(){return pr=new P("body",p.S),$.when(pr.init("p.md")).done(_init)});

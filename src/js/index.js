@@ -1,16 +1,19 @@
-var P, p, pr, _init;
+(function() {
+  var P, p, pr, _init;
 
-p = this.p;
+  p = this.p;
 
-P = p.P;
+  P = p.P;
 
-pr = null;
+  pr = null;
 
-_init = function(d) {
-  return null;
-};
+  _init = function(d) {
+    return console.log("start!!!");
+  };
 
-$(function() {
-  pr = new P("body", p.S);
-  return $.when(pr.init("p.md")).done(_init);
-});
+  $(function() {
+    pr = new P("body", p.S);
+    return $.when(pr.init("p.md")).done(_init);
+  });
+
+}).call(this);

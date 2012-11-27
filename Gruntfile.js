@@ -12,7 +12,7 @@ module.exports = function( grunt ) {
 
 		// specify an alternate install location for Bower
 		bower: {
-			dir: 'src/components'
+			dir: 'app/components'
 		},
 
 		// Coffee to JS compilation
@@ -38,6 +38,14 @@ module.exports = function( grunt ) {
 			}
 		},
 		coffee : {
+			compile: {
+				files: {
+					'app/js/*.js' : 'src/coffee/*.coffee',
+					'src/js/*.js' : 'src/coffee/*.coffee',
+					'test/js/*.js' : 'test/coffee/*.test.coffee'
+				}
+			}
+			/*
 			default : {
 				src: 'src/coffee/*.coffee',
 				dest: 'src/js'
@@ -45,7 +53,7 @@ module.exports = function( grunt ) {
 			test : {
 				src: 'test/coffee/*.test.coffee',
 				dest: 'test/js'
-			}
+			}*/
 		},
 
 		concat: {
@@ -97,7 +105,7 @@ module.exports = function( grunt ) {
 				src: 'src/sass',
 				dest: 'app/css',
 				images : 'app/images',
-				outputstyle: 'compressed',
+				outputstyle: 'expanded',
 				linecomments: false,
 				forcecompile: true,
 				debugsass: false,
@@ -125,7 +133,7 @@ module.exports = function( grunt ) {
 		watch: {
 			default : {
 				files: 'src/coffee/*.coffee',
-				tasks: 'coffee:default concat min notifyGrowl:coffee'
+				tasks: 'coffee concat min notifyGrowl:coffee'
 			},
 			compass : {
 				files: 'src/sass/*',
@@ -133,11 +141,7 @@ module.exports = function( grunt ) {
 			},
 			test : {
 				files: 'test/coffee/*',
-				tasks: 'coffee:test mochaPhantomjs'
-			},
-			index : {
-				files: 'src/js/index.js',
-				tasks: 'min:index'
+				tasks: 'coffee mochaPhantomjs'
 			},
 			hogan : {
 				files: 'src/hogan/*.mustache',
@@ -277,7 +281,7 @@ module.exports = function( grunt ) {
 	// Default task.
 	grunt.registerTask('default', 'coffee');
 	grunt.loadNpmTasks('grunt-compass');
-	grunt.loadNpmTasks('grunt-coffee');
+	grunt.loadNpmTasks('grunt-contrib-coffee');
 
 	grunt.registerTask('production', 'compile coffee and compass to productioin', function(){
 		grunt.task.run( "hogan" );

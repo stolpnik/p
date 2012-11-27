@@ -1,11 +1,14 @@
-var expect, should;
+(function() {
+  var expect, should;
 
-mocha.ui('bdd');
+  mocha.ui('bdd');
 
-mocha.reporter('html');
+  mocha.reporter('html');
 
-mocha.ignoreLeaks(false);
+  mocha.ignoreLeaks(false);
 
-should = chai.should();
+  should = chai.should();
 
-expect = chai.expect;
+  expect = chai.expect;
+
+}).call(this);
