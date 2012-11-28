@@ -3,18 +3,13 @@ require [
 		'showdown'
 		'hogan.min'
 	]
-	,->
+	,($, showdown, hogan)->
 		require [
 				'templates.hogan'
 				'p'
-				's'
-				'r'
 			]
-			,->
-				p = @p
+			,( t, p )->
 				P = p.P
-				pr = null
-
 				$ ->
 					pr = new P( "body", p.S )
 					$.when( pr.init "p.md" )

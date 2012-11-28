@@ -27,26 +27,32 @@
 <script type="text/javascript" src="../node_modules/sinon-chai/lib/sinon-chai.js"></script>
 <script type="text/javascript" src="js/default.test.js"></script>
 
-<script>expect = chai.expect</script>
+<script>
+	expect = chai.expect
+
+	var require ={
+		paths : {
+			p : "../../app/js/p"
+			,r : "../../app/js/r"
+			,s : "../../app/js/s"
+		}
+	}
+</script>
 
 <!-- include source files here... -->
-<script type="text/javascript" src="../components/jquery/jquery.js"></script>
-<script type="text/javascript" src="../src/js/showdown.js"></script>
-<script type="text/javascript" src="../src/js/hogan-2.0.0.js"></script>
-<script type="text/javascript" src="../src/js/templates.hogan.js"></script>
-<script type="text/javascript" src="../src/js/p.js"></script>
-<script type="text/javascript" src="../src/js/s.js"></script>
-<script type="text/javascript" src="../src/js/r.js"></script>
+<script type="text/javascript" src="../components/requirejs/require.js" data-main="js/p-require.test"></script>
 
 <!-- include spec files here... -->
-<script type="text/javascript" src="js/p.test.js"></script>
+<!--<script type="text/javascript" src="js/p.test.js"></script>-->
 
 <!-- trigger the mocha runner -->
 <!--<script src="runner/mocha.js"></script>-->
+<!--
 <script>
 if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
 else { mocha.run(); }
 </script>
+-->
 
 </body>
 </html>

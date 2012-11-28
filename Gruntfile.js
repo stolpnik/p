@@ -133,7 +133,7 @@ module.exports = function( grunt ) {
 		watch: {
 			default : {
 				files: 'src/coffee/*.coffee',
-				tasks: 'coffee concat min notifyGrowl:coffee'
+				tasks: 'coffee notifyGrowl:coffee'
 			},
 			compass : {
 				files: 'src/sass/*',
@@ -255,6 +255,19 @@ module.exports = function( grunt ) {
 			wrap: true,
 			name: 'main'
 		},
+
+		//requirejs
+		requirejs: {
+			compile : {
+				options : {
+					baseUrl : "app/js",
+					mainConfigFile : "",
+					out : "app/js/index.js"
+				}
+			}
+		},
+
+		//notify growl
 		notifyGrowl : {
 			coffee : {
 				message : grunt.template.today() + " : coffeescript compiled",
@@ -280,8 +293,12 @@ module.exports = function( grunt ) {
 
 	// Default task.
 	grunt.registerTask('default', 'coffee');
+
+	// load tasks
 	grunt.loadNpmTasks('grunt-compass');
-	grunt.loadNpmTasks('grunt-contrib-coffee');
+	//grunt.loadNpmTasks('grunt-contrib-coffee');
+	//grunt.loadNpmTasks('grunt-contrib-requirejs');
+
 
 	grunt.registerTask('production', 'compile coffee and compass to productioin', function(){
 		grunt.task.run( "hogan" );
@@ -315,10 +332,6 @@ module.exports = function( grunt ) {
 			}
 		});
 	});
-
-	// load tasks
-	grunt.loadNpmTasks('grunt-compass');
-	grunt.loadNpmTasks('grunt-coffee');
 
 	/* Inside grunt.js file (don't forget to add "growl" as a project dependency) */
 

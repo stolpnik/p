@@ -1,11 +1,17 @@
 (function() {
   var P, R, S;
 
-  P = this.p.P;
+  P = null;
 
-  R = this.p.R;
+  S = null;
 
-  S = this.p.S;
+  R = null;
+
+  define(["p"], function(p) {
+    P = p.P;
+    S = p.S;
+    return R = p.R;
+  });
 
   describe("p", function() {
     var presen;

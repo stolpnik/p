@@ -1,4 +1,10 @@
+S = null
+R = null
+
 class P
+	###
+	* constatns
+	###
 	@SPLIT_STR : "|||||"
 	@LEFT : 37
 	@UP : 38
@@ -21,12 +27,19 @@ class P
 	totalPages : 0
 	keyState : P.IDLE
 
+	###
+	* constructors
+	###
 	constructor : (target = 'body', renderer = S)->
 		this.data = ""
 		this.title = ""
 		this.pages = []
 		this.renderer = new renderer( target )
 
+	###
+	* init
+	* @param target {String} path to markdown file to load
+	###
 	init : ( target = "p.md" )->
 		myself = this
 		dfd = $.Deferred()
@@ -117,5 +130,14 @@ class P
 		prevPage = if this.currentPage is 1 then this.totalPages else this.currentPage - 1
 		this.show prevPage
 
-@p ||= {}
-@p.P = P
+define(
+	["s", "r"]
+	,(s, r)->
+		S = s
+		R = r
+		return {
+			P : P
+			,S : S
+			,R : R
+		}
+)

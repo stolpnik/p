@@ -1,6 +1,14 @@
-P = @p.P
-R = @p.R
-S = @p.S
+P = null
+S = null
+R = null
+
+define(
+	["p"]
+	,(p)->
+		P = p.P
+		S = p.S
+		R = p.R
+)
 
 describe "p", ->
 	presen = null

@@ -95,8 +95,8 @@
 
   })();
 
-  this.p || (this.p = {});
-
-  this.p.R = R;
+  define(function() {
+    return R;
+  });
 
 }).call(this);

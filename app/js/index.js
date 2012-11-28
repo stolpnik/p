@@ -1,0 +1,1 @@
+(function(){var a,b,c,d;b=this.p,a=b.P,c=null,d=function(a){return console.log("start!!!")},$(function(){return c=new a("body",b.S),$.when(c.init("p.md")).done(d)})}).call(this);

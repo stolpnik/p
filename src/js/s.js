@@ -62,8 +62,8 @@
 
   })();
 
-  this.p || (this.p = {});
-
-  this.p.S = S;
+  define(function() {
+    return S;
+  });
 
 }).call(this);

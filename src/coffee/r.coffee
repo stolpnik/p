@@ -72,5 +72,6 @@ class R
 		#page no
 		$("#current-page").text( page )
 
-@p ||= {}
-@p.R = R
+#@p ||= {}
+#@p.R = R
+define( -> R )

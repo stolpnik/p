@@ -47,5 +47,7 @@ class S
 		#page no
 		$("#current-page").text( page )
 
-@p ||= {}
-@p.S = S
+#@p ||= {}
+#@p.S = S
+
+define( -> S )
