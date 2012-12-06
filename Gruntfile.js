@@ -133,7 +133,7 @@ module.exports = function( grunt ) {
 		watch: {
 			default : {
 				files: 'src/coffee/*.coffee',
-				tasks: 'coffee notifyGrowl:coffee'
+				tasks: 'coffee yuidoc notifyGrowl:coffee'
 			},
 			compass : {
 				files: 'src/sass/*',
@@ -267,6 +267,23 @@ module.exports = function( grunt ) {
 			}
 		},
 
+		//yuidoc
+		yuidoc: {
+			dist: {
+				'name': 'yt',
+				'description': 'youtube movie player',
+				'version': '0.1.0',
+				'url': 'http://www.tac.co.jp/',
+				options: {
+					paths: 'src/coffee',
+					// paths: 'dest/js',
+					outdir: 'docs',
+					syntaxtype: 'coffee',
+					extension: '.coffee'
+				}
+			}
+		},
+
 		//notify growl
 		notifyGrowl : {
 			coffee : {
@@ -296,6 +313,7 @@ module.exports = function( grunt ) {
 
 	// load tasks
 	grunt.loadNpmTasks('grunt-compass');
+	grunt.loadNpmTasks('grunt-contrib-yuidoc');
 	//grunt.loadNpmTasks('grunt-contrib-coffee');
 	//grunt.loadNpmTasks('grunt-contrib-requirejs');
 

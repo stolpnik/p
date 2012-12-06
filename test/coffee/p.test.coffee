@@ -12,6 +12,8 @@ define(
 
 describe "p", ->
 	presen = null
+	before ->
+		location.hash = ""
 	beforeEach ->
 		$(document).off("keyup")
 		$(document).off("keydown")
@@ -66,6 +68,7 @@ describe "p", ->
 				(d)->
 					html = presen.parse(d)
 					presen.addPages html
+					location.hash = ""
 					presen.setup()
 					$("#page-1").css("display").should.be.equal("block")
 					done()
@@ -78,6 +81,7 @@ describe "p", ->
 				(d)->
 					html = presen.parse(d)
 					presen.addPages html
+					location.hash = ""
 					presen.setup()
 					$("#current-page").text().should.be.equal('1')
 					$("#total-pages").text().should.be.equal('4')
@@ -110,6 +114,7 @@ describe "p", ->
 					(d)->
 						html = presen.parse(d)
 						presen.addPages html
+						location.hash = ""
 						presen.setup()
 						presen.next().should.be.match(/bbb/g)
 						$("#page-1").css("display").should.be.equal("none")
@@ -131,6 +136,7 @@ describe "p", ->
 					(d)->
 						html = presen.parse(d)
 						presen.addPages html
+						location.hash = ""
 						presen.setup()
 						presen.prev().should.be.match(/ddd/g)
 						$("#page-1").css("display").should.be.equal("none")
@@ -155,6 +161,7 @@ describe "ui", ->
 				(d)->
 					html = presen.parse(d)
 					presen.addPages html
+					location.hash = ""
 					presen.setup()
 					e = $.Event("keydown")
 					e.keyCode = P.RIGHT
@@ -170,6 +177,7 @@ describe "ui", ->
 				(d)->
 					html = presen.parse(d)
 					presen.addPages html
+					location.hash = ""
 					presen.setup()
 					e = $.Event("keydown")
 					e.keyCode = P.LEFT
@@ -185,6 +193,7 @@ describe "ui", ->
 				(d)->
 					html = presen.parse(d)
 					presen.addPages html
+					location.hash = ""
 					presen.setup()
 					e = $.Event("keydown")
 					e.keyCode = P.UP
@@ -200,6 +209,7 @@ describe "ui", ->
 				(d)->
 					html = presen.parse(d)
 					presen.addPages html
+					location.hash = ""
 					presen.setup()
 					e = $.Event("keydown")
 					e.keyCode = P.DOWN
@@ -208,3 +218,46 @@ describe "ui", ->
 					$("#page-4").css("display").should.be.equal("block")
 					done()
 			)
+
+describe "paging", ->
+	presen = null
+	beforeEach ->
+		$(document).off("keyup")
+		$(document).off("keydown")
+		presen = new P( "body", S )
+		$("#p").remove()
+	afterEach ->
+		$(document).trigger( $.Event("keyup") )
+	it "add url current page hash", (done)->
+		dfd = presen.load()
+		$.when(dfd).done(
+			(d)->
+				html = presen.parse(d)
+				presen.addPages html
+				location.hash = ""
+				presen.setup()
+				e = $.Event("keydown")
+				e.keyCode = P.RIGHT
+				$(document).trigger(e)
+				location.hash.should.be.equal("#2")
+				done()
+		)
+	it "two next page and history.back() should show page2", (done)->
+		dfd = presen.load()
+		$.when(dfd).done(
+			(d)->
+				html = presen.parse(d)
+				presen.addPages html
+				location.hash = ""
+				presen.setup()
+				e = $.Event("keydown")
+				e.keyCode = P.RIGHT
+				$(document).trigger(e)
+				$(document).trigger(e)
+				window.history.back()
+				$("#page-1").css("display").should.be.equal("none")
+				$("#page-2").css("display").should.be.equal("block")
+				$("#page-3").css("display").should.be.equal("none")
+				$("#page-4").css("display").should.be.equal("none")
+				done()
+		)

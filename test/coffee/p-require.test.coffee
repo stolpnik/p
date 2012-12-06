@@ -9,6 +9,7 @@ require [
 ]
 ,($, showdown, hogan) ->
 	require [
+		'../../app/js/jquery.touchSwipe.min'
 		'../../app/js/templates.hogan'
 	]
 	,()->

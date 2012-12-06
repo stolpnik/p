@@ -1,6 +1,6 @@
 {
     "name": "test",
-    "version": "1.0.0",
+    "version": "0.1.2",
     "private": true,
     "scripts": {
         "start": "node app"
@@ -20,9 +20,9 @@
         "grunt": "*",
         "growl": "*",
 		"coffee-script" : "*",
+		"grunt-contrib-yuidoc" : "*",
 		"hogan.js": "*",
         "grunt-compass": "*",
-        //"grunt-coffee" : "*",
 		"grunt-growl" : "*",
 		"mocha" : "*",
 		"chai" : "*",

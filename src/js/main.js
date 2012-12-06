@@ -1,7 +1,7 @@
 (function() {
   var _init;
 
-  require(['jquery', 'showdown', 'hogan.min'], function($, showdown, hogan) {
+  require(['jquery', 'jquery.touchSwipe.min', 'showdown', 'hogan.min'], function($, showdown, hogan) {
     return require(['templates.hogan', 'p'], function(t, p) {
       var P;
       P = p.P;

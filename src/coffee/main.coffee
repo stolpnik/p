@@ -1,5 +1,6 @@
 require [
 		'jquery'
+		'jquery.touchSwipe.min'
 		'showdown'
 		'hogan.min'
 	]
